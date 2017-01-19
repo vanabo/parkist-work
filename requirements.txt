@@ -1,12 +1,6 @@
 Django==1.10.4
-django-floppyforms==1.7.0
 django-geoposition==0.3.0
-django-smtp-ssl==1.0
 gunicorn==19.6.0
-httpretty==0.8.14
-python-http-client==2.2.1
 requests==2.12.4
-sendgrid==3.6.3
-South==1.0.2
 urllib3==1.19.1
 whitenoise==3.2.3
