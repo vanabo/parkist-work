@@ -1,0 +1,1 @@
+web: gunicorn parkist.wsgi --log-file -

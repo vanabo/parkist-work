@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Parkist - Живая парковка в Москве</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="{% static 'main/css/img/favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'main/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+  <meta name="mailru-domain" content="3e71CWd3hLMGIDj5" />
+</head>
+
+<body>
+
+<ul class="navigation">
+	<li class="nav-item"><a href="#home">Главная</a></li>
+	<li class="nav-item"><a href="#how">Как это работает</a></li>
+	<li class="nav-item"><a href="#price">Цены</a></li>
+	<li class="nav-item"><a href="#order">Вызвать Паркиста</a></li>
+    <li class="nav-item"><a href="#callback">Обратный звонок</a></li>
+	<li class="nav-item"><a href="#contact">Контакты</a></li>
+</ul>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger"></label>
+<div class="header">
+    <div class="block-header-wrap">
+    <div class="block-logo col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-5 col-xs-offset-1">
+    <a href="/"><img class="img-responsive" src="{% static 'main/css/img/logo.png' %}" width="100px" align="center" /></a>
+    </div>
+    <div class="block-contact col-md-4 col-sm-4 col-xs-9">
+        <div class="phone">
+        +7(495)506-76-18
+        </div>
+        <div class="call-back"><a href="#myModal" data-toggle="modal" >Обратный звонок</a></div>
+    </div>
+    </div>
+ </div>
+
+<div class="site-wrap">
+
+     <a name="home"></a>
+    <div class="block-slide">
+        <div class="block-slog col-md-4 col-md-offset-2 col-sm-6 col-xs-12">
+        <h1 class="first">Живая Парковка</h1>
+        <div class="second">в Москве</div>
+
+        <div class="slog">Тяжело припарковаться в&nbsp;центре города?<br>
+            Паркист позаботится о&nbsp;Вашем автомобиле.<br>
+            Вы&nbsp;передаете и&nbsp;забираете машину<br>в&nbsp;любом удобном Вам месте!</div>
+        <div class="block-button">
+            <a href="/#order" class="button-orange">Вызвать Паркиста</a>
+        </div>
+    </div>
+    </div>
+
+    <div class="container-fluid">
+    <div class="row">
+         <a name="order"></a>
+        <div class="block-form col-md-4 col-md-offset-4 col-sm-6 col-xs-12">
+            <div class="heading">
+                <h2>Вызвать Паркиста</h2>
+            </div>
+<form action="/#order" role="form" id="contactForm" method="POST">
+    {{ form.media }}
+    {% csrf_token %}
+    {% if success %}
+    <div class="bg-success">
+    {{ success }}
+    </div>
+    {% endif %}
+    {{ form.non_field_errors }}
+    <div class="form-group">
+    <label for="form.current_point.id_for_label">Укажите адрес*</label>
+    {% if form.current_point.errors %}
+        <div class="bg-danger">
+    {{ form.current_point.errors }}
+        </div>
+        {% endif %}
+    {{ form.current_point }}
+  </div>
+  <div class="form-group">
+    <label for="form.current_date.id_for_label">Дата и время*</label>
+      {% if form.current_date.errors %}
+      <div class="bg-danger">
+    {{ form.current_date.errors }}
+     </div>
+      {% endif %}
+      {% if form.current_time.errors %}
+      <div class="bg-danger">
+    {{ form.current_time.errors }}
+     </div>
+      {% endif %}
+    {{ form.current_date }}
+    {{ form.current_time }}
+  </div>
+    <div class="form-group">
+    <label for="form.phone3.id_for_label">Телефон*</label>
+    {% if form.phone3.errors %}
+        <div class="bg-danger">
+    {{ form.phone3.errors }}
+        </div>
+        {% endif %}
+    {{ form.phone3 }}
+  </div>
+    <div class="form-group block-button block-center"><input type="submit" name="submit3" class="button-orange" value="Вызвать Паркиста" /></div>
+</form> 
+        </div>
+    </div>
+</div>
+    <div class="container-fluid">
+    <div class="row">         
+        <div class="block-pictures col-md-12 col-sm-12 col-xs-12">
+            <div class="block-img col-md-2 col-md-offset-2  col-sm-3 col-xs-6">
+                <div class="img-square"><img  src="{% static 'main/css/img/icon1.png' %}" align="center" /></div>
+                <p>Забираем автомобиль<br> в&nbsp;течение 15&nbsp;минут</p>
+            </div>
+            <div class="block-img col-md-2 col-sm-3 col-xs-6">
+                <div class="img-square"><img  src="{% static 'main/css/img/icon2.png' %}" align="center" /></div>
+                <p>с&nbsp;8:00 до&nbsp;20:00</p>
+            </div>
+            <div class="block-img col-md-2 col-sm-3 col-xs-6">
+                <div class="img-square"><img  src="{% static 'main/css/img/icon3.png' %}" align="center" /></div>
+                <p>Водители со&nbsp;стажем<br>более 10&nbsp;лет</p>
+            </div>
+            <div class="block-img col-md-2 col-sm-3 col-xs-6">
+                <div class="img-square"><img  src="{% static 'main/css/img/icon4.png' %}" align="center" /></div>
+                <p>Страховка<br>на&nbsp;10&nbsp;млн. рублей</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row">
+        <a name="how"></a>
+        <div class="block-how col-md-12 col-sm-12 col-xs-12">
+            <div id="triangle-down"></div>
+            <div class="heading">
+                    <h2>Как это работает?</h2>
+            </div>
+<div class="block-how-son">
+            <div class="block-how-img col-md-4 col-md-offset-2">
+                <img class="img-responsive" src="{% static 'main/css/img/map4.png' %}" />
+            </div>
+            <div class="block-how-text col-md-4">
+                <div class="one-icon"><img src="{% static 'main/css/img/one.png' %}" /></div>
+                <p>Укажите место в&nbsp;центре города,<br> где Паркист встретит Вас<br> и&nbsp;примет автомобиль</p>
+            </div>
+
+         </div>
+
+        </div>
+        </div></div>
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="block-how2 col-md-12 col-sm-12 col-xs-12">
+            <div class="block-how-son2">
+            <div class="block-how-text col-md-4 col-md-offset-2">
+                <div class="one-icon"><img src="{% static 'main/css/img/two.png' %}" /></div>
+                <p>Паркист все время с&nbsp;автомобилем,<br> и&nbsp;Вы можете видеть его местоположение</p>
+            </div>
+            <div class="block-how-img col-md-4">
+                <img class="img-responsive" src="{% static 'main/css/img/map5.png' %}" />
+            </div>
+            </div>
+
+         </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="block-how col-md-12 col-sm-12 col-xs-12">
+<div class="block-how-son">
+            <div class="block-how-img col-md-4 col-md-offset-2">
+                <img class="img-responsive" src="{% static 'main/css/img/map6.png' %}" />
+            </div>
+            <div class="block-how-text col-md-4">
+                <div class="one-icon"><img src="{% static 'main/css/img/three.png' %}" /></div>
+                <p>Когда Вы&nbsp;будете готовы,<br> Паркист подаст автомобиль ко&nbsp;входу<br> в&nbsp;течение 2&nbsp;минут
+            </div>
+            </div>
+         </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+    <div class="row">
+        <a name="price"></a>
+        <div class="block-price col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+
+            <div class="heading">
+                    <h2>Сколько стоит Живая Парковка?</h2>
+            </div>
+
+            <div class="block-price-small">
+                390 <span class="rub">Р</span><br>
+                <span>за первый час</span>
+            </div>
+
+            <p>+7 <span class="rub-small">Р</span> в  минуту<br><span>со второго часа</span></p>
+
+        <div class="block-button">
+            <a href="#order" class="button-orange">Вызвать Паркиста</a>
+        </div>
+
+         </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="block-features col-md-12 col-sm-12 col-xs-12">
+            <div class="block-how-son">
+            <div class="block-features-text col-md-3 col-md-offset-2">
+                <h3>Проверенные Паркисты</h3>
+                <p>Все паркисты&nbsp;&mdash; профессиональные водители.<br>Прошли строгий отбор и&nbsp;проверку<br> службы безопасности.<br> Мы&nbsp;уделяем этому особое внимание
+                    </p>
+            </div>
+            <div class="block-features-img col-md-4">
+                <img class="img-responsive" src="{% static 'main/css/img/parkist.png' %}" />
+            </div>
+            </div>
+
+         </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="block-features2 col-md-12 col-sm-12 col-xs-12">
+            <div class="block-how-son2">
+            <div class="block-features-img col-md-4 col-md-offset-2">
+                <img class="img-responsive" src="{% static 'main/css/img/safety.png' %}" />
+            </div>
+
+            <div class="block-features-text col-md-4">
+                <h3>Безопасность</h3>
+                <p>Мы&nbsp;разработали систему защиты<br>секретными кодами при передаче<br> автомобиля и&nbsp;застраховали каждую<br> машину от&nbsp;ущерба на&nbsp;сумму<br>до&nbsp;10&nbsp;млн рублей.
+                    </p>
+            </div>
+            </div>
+
+         </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="services col-md-12 col-sm-12 col-xs-12">
+            <div class="heading2">
+                <h2>Дополнительные услуги</h2>
+            </div>
+            <div class="services1 col-md-4 col-md-offset-2 col-sm-6 col-xs-6">
+                <img src="{% static 'main/css/img/icon5.png' %}" />
+            <p class="black-text">Автомойка</p>
+            </div>
+            <div class="services2 col-md-4 col-sm-6 col-xs-6">
+                <img src="{% static 'main/css/img/icon6.png' %}" />
+            <p class="white-text">Заправка топливом</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row">
+        <a name="callback"></a>
+        <div class="block-form col-md-4 col-md-offset-4 col-sm-6 col-xs-12">
+            <div id="triangle-down"></div>
+            <div class="heading">
+                <h2>Остались вопросы?</h2>
+            </div>
+            <div class="pre-text">
+            Позвоните по телефону<br><span>+7 (495) 506-76-18</span><br>или заполните форму ниже и&nbsp;мы&nbsp;перезвоним Вам в&nbsp;течение 5&nbsp;минут!
+            
+            </div>
+            {% include "main/form_snippet.html" with form=form2 method='POST' action="/#callback" %}
+        </div>
+    </div>
+</div>
+    <div class="container-fluid">
+    <div class="row">
+        <a name="contact"></a>
+        <div class="block-map col-md-12 col-sm-12 col-xs-12">
+            <div class="block-table col-md-3 col-md-offset-8 col-sm-5 col-sm-offset-6 col-xs-12">
+                <h3>Зона Живой Парковки</h3>
+                <p>Время работы:<br>
+                <span>8:00 - 20:00</span></p>
+                <div class="block-button">
+                    <a href="#order" class="button-orange">Вызвать Паркиста</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="footer">
+        <div class="footer-block1 col-md-4"><img src="{% static 'main/css/img/logo.png' %}" /></div>
+        <div class="footer-block2 col-md-4">
+            <div class="social-icon"><img src="{% static 'main/css/img/vk.png' %}"/></div>
+            <div class="social-icon"><img src="{% static 'main/css/img/ok.png' %}"/></div>
+            <div class="social-icon"><img src="{% static 'main/css/img/fb.png' %}"/></div>
+            <div class="social-icon"><img src="{% static 'main/css/img/in.png' %}"/></div>
+            <div class="social-icon"><img src="{% static 'main/css/img/tw.png' %}"/></div>
+        </div>
+        <div class="footer-block3 col-md-4">+7(495)506-76-18<br><span>info@parkist.ru</span></div>
+        </div>
+
+        <div class="block-footer col-md-12 col-sm-12 col-xs-12">
+            Интернет-сайт носит исключительно информационный характер и&nbsp;ни&nbsp;при каких условиях не&nbsp;является публичной офертой (ст. 437&nbsp;ГК РФ).<br>
+            Копирование материалов без разрешения запрещено.
+        </div>
+    </div>
+    </div>
+    </div>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Обратный звонок</h3>
+      </div>
+      <div class="modal-body">
+        {% include "main/form_snippet.html" with form=form2 method='POST' action="/#home" %}
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'main/js/bootstrap.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<form action={% if action %}{{ action }}{% endif %}  role="form"  method={% if method %}{{ method }}{% else %}POST{% endif %}>
+    {% csrf_token %}
+    {% if success2 %}
+    <div class="bg-success">
+    {{ success2 }}
+    </div>
+    {% endif %}
+    {{ form2.non_field_errors }}
+    <div class="form-group">
+    <label for="form2.name.id_for_label">Ваше имя</label>
+    {{ form2.name }}
+    </div>
+    <div class="form-group">
+    <label for="form2.phone.id_for_label">Телефон*</label>
+        <div class="bg-danger">
+    {{ form2.phone.errors }}
+        </div>
+    {{ form2.phone }}
+    </div>
+
+    <div class="form-group block-button block-center"><input type="submit" name="submit2" class="button-orange" value="Заказать звонок" /></div>
+</form>
