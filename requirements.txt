@@ -2,5 +2,5 @@ Django==1.10.4
 django-geoposition==0.3.0
 gunicorn==19.6.0
 requests==2.12.4
-urllib3==1.19.1
+urllib3==1.26.5
 whitenoise==3.2.3
